@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "project1972-eeb92": {
+      "hosting": {
+        "monsiteweb": [
+          "project1972-eeb92"
+        ]
+      }
+    }
+  }
+}
