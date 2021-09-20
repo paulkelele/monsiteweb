@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Firestore, collectionData, collection} from '@angular/fire/firestore';
+
 import { Observable } from 'rxjs';
- 
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
-interface users {
-  name: string
-};
 
 @Component({
   selector: 'app-root',
@@ -17,23 +15,27 @@ interface users {
 
 export class AppComponent {
   title = 'WeWeSoft';
-  item$: any;
+ 
   auth = getAuth();
 
-  constructor(private firestore: Firestore ) {
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+
+  constructor( private route:Router ) {
      
      
   };
 
-  dd(){
-    const collections: any = collection(this.firestore, 'users');
-    this.item$ = collectionData(collections);
-  }
+  
+ 
   signInUser(){
-   signInWithEmailAndPassword(this.auth,"steflucrene@yahoo.fr","cerise").then(
+   signInWithEmailAndPassword(this.auth,this.loginForm.get("email")?.value,this.loginForm.get("password")?.value).then(
          ((userCredential) =>{
           const user = userCredential.user.email;
           console.log(user);
+          this.route.navigate(['/adiscover']);
          } )  
       
     ).catch((error) =>{
@@ -44,15 +46,6 @@ export class AppComponent {
     });
 
   }
- 
-  signOut(){
-    signOut(this.auth).then(() => {
-      // Sign-out successful.
-      console.log("DECONNEXION")
-    }).catch((error) => {
-      // An error happened.
-      console.log(error)
-    });
-  }
+
  
 }

@@ -1,14 +1,19 @@
+<div class="w3-container w3-blue">
  
-<h1>test</h1>
-<div>
-  <ul>
-  <li *ngFor="let item of item$ | async">
-    {{ item.name }}
-  </li>
-</ul>
-<router-outlet></router-outlet>
-</div>
-<button (click)="dd()">dd</button>
-<button (click)="signInUser()">Auht</button>
-<button (click)="signOut()">SignOut</button>
+<form [formGroup]="loginForm" (ngSubmit)="signInUser()">
+  <label for="first-name">Email: </label>
+  <input id="first-name" type="text" formControlName="email">
 
+  <label for="last-name">Password: </label>
+  <input id="last-name" type="text" formControlName="password">
+
+  <button type="submit" [disabled]="!loginForm.valid">SignIn</button>
+ </form>
+   
+</div>
+
+<h1>test</h1>
+
+<button (click)="signInUser()">Auht</button>
+ 
+<router-outlet></router-outlet>
