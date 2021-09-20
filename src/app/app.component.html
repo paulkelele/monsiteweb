@@ -1,5 +1,5 @@
-<div class="w3-container w3-blue">
- 
+<div *ngIf="isHomeRoute()" class="w3-container w3-dark-grey">
+ <div class="w3-right">
 <form [formGroup]="loginForm" (ngSubmit)="signInUser()">
   <label for="first-name">Email: </label>
   <input id="first-name" type="text" formControlName="email">
@@ -7,13 +7,15 @@
   <label for="last-name">Password: </label>
   <input id="last-name" type="text" formControlName="password">
 
-  <button type="submit" [disabled]="!loginForm.valid">SignIn</button>
+  <button class="w3-btn w3-purple w3-ripple w3-margin-left" type="submit" [disabled]="!loginForm.valid">SignIn</button>
  </form>
-   
+   </div>
 </div>
-
-<h1>test</h1>
-
-<button (click)="signInUser()">Auht</button>
+<div>
+  <router-outlet></router-outlet>
+</div>
  
-<router-outlet></router-outlet>
+
+ 
+ 
+
