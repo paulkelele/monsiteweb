@@ -1,2 +1,14 @@
-<h3>Welcome</h3>
+ 
+
+<div>
+  <ul>
+  <li *ngFor="let item of item$ | async">
+    {{ item.name }}
+  </li>
+</ul>
 <router-outlet></router-outlet>
+</div>
+
+
+ 
+
