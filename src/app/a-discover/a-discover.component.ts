@@ -29,6 +29,7 @@ export class ADiscoverComponent implements OnInit {
   isDiscoverRoute(){
     return this.route.url === '/adiscover';
   }
+  
   dd(){
     const collections: any = collection(this.firestore, 'users');
     this.item$ = collectionData(collections);
